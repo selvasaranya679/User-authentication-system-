@@ -1,0 +1,173 @@
+<!DOCTYPE html>  
+
+<html lang=”en”> <head>  
+
+  <meta charset=”UTF-8”>  
+
+  <title>User Authentication (Frontend Only)</title>  
+
+  <style>  
+
+    Body {  
+
+      Font-family: Arial, sans-serif;  
+
+      Background: linear-gradient(135deg, #667eea, #764ba2);  
+
+      Color: #fff;  
+
+      Display: flex;  
+
+      Justify-content: center;  
+
+      Align-items: center;  
+
+      Height: 100vh;  
+
+    }  
+
+    .container {  
+
+      Background: rgba(255, 255, 255, 0.1);  
+
+      Padding: 30px;  
+
+      Border-radius: 12px;  
+
+      Width: 300px;  
+
+      Text-align: center;  
+
+    }  
+
+    Input {  
+
+      Width: 90%;  
+
+      Padding: 10px;  
+
+      Margin: 10px 0;  
+
+      Border: none;  
+
+      Border-radius: 5px;  
+
+    }  
+
+    Button {  
+
+      Padding: 10px 20px;  
+
+      Background: #4CAF50;  
+
+      Color: white;  
+
+      Border: none;  
+
+      Border-radius: 5px;  
+
+      Cursor: pointer;  
+
+    }  
+
+    Button:hover {  
+
+      Background: #45a049;  
+
+    }  
+
+    .message {  
+
+      Margin-top: 10px;  
+
+      Font-size: 14px;  
+
+    }  
+
+  </style>  
+
+</head>  
+
+<body>  
+
+  <div class=”container”>  
+
+    <h2>User Authentication</h2>  
+
+    <input type=”text” id=”username” placeholder=”Username” />  
+
+    <input type=”password” id=”password” placeholder=”Password” />  
+
+    <button onclick=”register()”>Register</button>  
+
+    <button onclick=”login()”>Login</button>  
+
+    <div class=”message” id=”message”></div>  
+
+  </div>  
+
+  <script>  
+
+    Function register() {  
+
+      Const username = document.getElementById(“username”).value.trim();  
+
+      Const password = document.getElementById(“password”).value.trim();  
+
+  
+
+      If (!username || !password) {         showMessage(“Please enter both fields!”, “red”);  
+
+        return;  
+
+      }  
+
+      If (localStorage.getItem(username)) {         showMessage(“User already exists!”, “orange”);  
+
+        return;  
+
+      }  
+
+      // 	Save 	user 	credentials 	(insecure 	simulation)       localStorage.setItem(username, 	password);       
+
+showMessage(“User registered successfully!”, “lightgreen”);  
+
+    }  
+
+    Function login() {  
+
+      Const username = document.getElementById(“username”).value.trim();  
+
+      Const password = document.getElementById(“password”).value.trim();  
+
+  
+
+      Const storedPassword = localStorage.getItem(username);       If (!storedPassword) {         showMessage(“User not found! Please register first.”, “orange”);          return;  
+
+      }  
+
+      If (storedPassword === password) {         showMessage(“Login successful! 🎉”, “lightgreen”);       } else 
+
+{  
+
+        showMessage(“Incorrect password!”, “red”);  
+
+      }  
+
+    }  
+
+    Function showMessage(text, color) {  
+
+      Const msg = document.getElementById(“message”);  
+
+      Msg.textContent = text;  
+
+      Msg.style.color = color;  
+
+    }  
+
+  </script>  
+
+</body>  
+
+</html>
